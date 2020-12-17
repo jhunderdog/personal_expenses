@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:personal_expenses/transaction.dart';
+import 'package:personal_expenses/widgets/user_transaction.dart';
 
 void main() {
   runApp(MyApp());
@@ -21,54 +21,29 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatelessWidget {
-  final List<Transaction> transactions = [
-    Transaction(
-      id: 't1',
-      title: 'New Shoes',
-      amount: 69.99,
-      date: DateTime.now(),
-    ),
-    Transaction(
-      id: 't2',
-      title: 'Weekly Groceries',
-      amount: 16.53,
-      date: DateTime.now(),
-    ),
-  ];
+  // String titleInput;
+  // String amountInput;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
           title: Text('Flutter App'),
         ),
-        body: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            Container(
-              width: double.infinity,
-              child: Card(
-                color: Colors.blue,
-                child: Text('Chart!'),
-                elevation: 5,
-              ),
-            ),
-            Column(
-              children: transactions.map((tx) {
-                return Card(
-                    child: Row(
-                  children: [
-                    Container(
-                      child: Text(tx.amount.toString()),
-                    ),
-                    Column(
-                      children: [Text(tx.title), Text(tx.date.toString())],
-                    )
-                  ],
-                ));
-              }).toList(),
-            )
-          ],
+        body: SingleChildScrollView(
+          child: Column(
+              // mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                Container(
+                  width: double.infinity,
+                  child: Card(
+                    color: Colors.blue,
+                    child: Text('Chart!'),
+                    elevation: 5,
+                  ),
+                ),
+                UserTransactions()
+              ]),
         ));
   }
 }
